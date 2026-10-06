@@ -7,7 +7,7 @@ def main():
   1. Convert Temperature
   2. Convert Distance
   3. Convert Weight
-  4. Convert Volume
+  4. Convert Liquid-Volume
   5. Exit""")
         choice = input("\nSelect option (1-5): ")
 
@@ -69,8 +69,54 @@ def main():
                 pass
 
             case "4":
+                print("""\n LIQUID-VOLUME UNITS:
+    1. Liters
+    2. Milliliters
+    3. Cups
+    4. Fluid Ounces
+    5. Gallons""")
+                start_unit = input("\nSelect starting unit (1-5): ")
+                end_unit = input("\nSelect destination unit (1-5): ")
                 num = input("Enter the number to convert: ")
-                print(f'{num} liters is {float(num) * 0.264172} gallons.')
+
+                match (start_unit):
+                    case "1":
+                        start_unit_name = "Liters"
+                        start_unit_value = 1
+                    case "2":
+                        start_unit_name = "Milliliters"
+                        start_unit_value = 0.001
+                    case "3":
+                        start_unit_name = "Cups"
+                        start_unit_value = 0.236588
+                    case "4":
+                        start_unit_name = "Fluid Ounces"
+                        start_unit_value = 0.0295735
+                    case "5":
+                        start_unit_name = "Gallons"
+                        start_unit_value = 3.78541
+                    case _:
+                        print("Invalid starting unit.")
+
+                match (end_unit):
+                    case "1":
+                        end_unit_name = "Liters"
+                        end_unit_value = 1
+                    case "2":
+                        end_unit_name = "Milliliters"
+                        end_unit_value = 0.001
+                    case "3":
+                        end_unit_name = "Cups"
+                        end_unit_value = 0.236588
+                    case "4":
+                        end_unit_name = "Fluid Ounces"
+                        end_unit_value = 0.0295735
+                    case "5":
+                        end_unit_name = "Gallons"
+                        end_unit_value = 3.78541
+                    case _:
+                        print("Invalid destination unit.")
+                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
                 pass
 
             case "5":
