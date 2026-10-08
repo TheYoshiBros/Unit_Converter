@@ -59,8 +59,90 @@ def main():
                 pass
 
             case "2":
-                num = input("Enter number: ")
-                print(f'{num} meters is {float(num) * 3.28084} feet.')
+                print("""\n DISTANCE UNITS:
+    1. Milimeters
+    2. Centimeters
+    3. Meters
+    4. Kilometers
+    5. Inches
+    6. Feet
+    7. Yards
+    8. Miles""")
+                start_unit = input("\nSelect starting unit (1-8): ")
+                end_unit = input("\nSelect destination unit (1-8): ")
+
+                #print("Starting unit selected:", start_unit)
+                #print("Destination unit selected:", end_unit)
+                
+                #print(f'{num} meters is {float(num) * 3.28084} feet.')
+
+                if start_unit not in ("1", "2", "3", "4", "5", "6", "7", "8"):
+                    print("Invalid starting unit.")
+                    continue
+
+                if end_unit not in ("1", "2", "3", "4", "5", "6", "7", "8"):
+                    print("Invalid destination unit.")
+                    continue
+
+                num = input("Enter the number to convert: ")
+
+                match (start_unit):
+                    case "1":
+                        start_unit_name = "Millimeters"
+                        start_unit_value = 0.001
+                    case "2":
+                        start_unit_name = "Centimeters"
+                        start_unit_value = 0.01
+                    case "3":
+                        start_unit_name = "Meters"
+                        start_unit_value = 1
+                    case "4":
+                        start_unit_name = "Kilometers"
+                        start_unit_value = 1000
+                    case "5":
+                        start_unit_name = "Inches"
+                        start_unit_value = 0.0254
+                    case "6":
+                        start_unit_name = "Feet"
+                        start_unit_value = 0.3048
+                    case "7":
+                        start_unit_name = "Yards"
+                        start_unit_value = 0.9144
+                    case "8":
+                        start_unit_name = "Miles"
+                        start_unit_value = 1609.344
+                    case _:
+                        print("Invalid starting unit.")
+                
+                match (end_unit):
+                    case "1":
+                        end_unit_name = "Millimeters"
+                        end_unit_value = 0.001
+                    case "2":
+                        end_unit_name = "Centimeters"
+                        end_unit_value = 0.01
+                    case "3":
+                        end_unit_name = "Meters"
+                        end_unit_value = 1
+                    case "4":
+                        end_unit_name = "Kilometers"
+                        end_unit_value = 1000
+                    case "5":
+                        end_unit_name = "Inches"
+                        end_unit_value = 0.0254
+                    case "6":
+                        end_unit_name = "Feet"
+                        end_unit_value = 0.3048
+                    case "7":
+                        end_unit_name = "Yards"
+                        end_unit_value = 0.9144
+                    case "8":
+                        end_unit_name = "Miles"
+                        end_unit_value = 1609.344
+                    case _:
+                        print("Invalid destination unit.")
+                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
+
                 pass
 
             case "3":
