@@ -146,8 +146,67 @@ def main():
                 pass
 
             case "3":
+                print("""\n Wight and mass units:
+    1. Grams
+    2. Kilograms
+    3. Milligrams
+    4. Ounces
+    5. Pounds""")
+                start_units = input("\nSelect Starting unit (1-5):")
+                end_unit = input("\nSelect destination unit (1-5)")
                 num = input("Enter the number to convert: ")
-                print(f'{num} kilograms is {float(num) * 2.20462} pounds.')
+
+                 match (start_unit):
+                    case "1":
+                        start_unit_name = "Grams"
+                        start_unit_value = 1
+
+                    case "2":
+                        start_unit_name = "Kilograms"
+                        start_unit_value = 1000
+
+                    case "3":
+                        start_unit_name = "Milligrams"
+                        start_unit_value = 0.001
+
+                    case "4":
+                        start_unit_name = "Ounces"
+                        start_unit_value = 28.349523125
+
+                    case "5":
+                        start_unit_name = "Pounds"
+                        start_unit_value = 453.59237
+
+                    case _:
+                        print("Invalid starting unit.")
+                        continue
+
+                match (end_unit):
+                    case "1":
+                        end_unit_name = "Grams"
+                        end_unit_value = 1
+
+                    case "2":
+                        end_unit_name = "Kilograms"
+                        end_unit_value = 1000
+
+                    case "3":
+                        end_unit_name = "Milligrams"
+                        end_unit_value = 0.001
+
+                    case "4":
+                        end_unit_name = "Ounces"
+                        end_unit_value = 28.349523125
+
+                    case "5":
+                        end_unit_name = "Pounds"
+                        end_unit_value = 453.59237
+
+                    case _:
+                        print("Invalid destination unit.")
+                        continue
+                
+                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
                 pass
 
             case "4":
