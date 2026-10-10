@@ -60,31 +60,37 @@ def main():
 
             case "2":
                 print("""\n DISTANCE UNITS:
-    1. Milimeters
+    1. Millimeters
     2. Centimeters
     3. Meters
     4. Kilometers
     5. Inches
     6. Feet
     7. Yards
-    8. Miles""")
-                start_unit = input("\nSelect starting unit (1-8): ")
-                end_unit = input("\nSelect destination unit (1-8): ")
+    8. Miles
+    9. Micrometers
+    10. Nanometers
+    11. Picometers
+    12. Femtometers
+    13. Angstroms
+    14. Nautical Miles""")
+                start_unit = input("\nSelect starting unit (1-14): ")
+                end_unit = input("\nSelect destination unit (1-14): ")
 
                 #print("Starting unit selected:", start_unit)
                 #print("Destination unit selected:", end_unit)
                 
                 #print(f'{num} meters is {float(num) * 3.28084} feet.')
 
-                if start_unit not in ("1", "2", "3", "4", "5", "6", "7", "8"):
+                if start_unit not in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"):
                     print("Invalid starting unit.")
                     continue
 
-                if end_unit not in ("1", "2", "3", "4", "5", "6", "7", "8"):
+                if end_unit not in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"):
                     print("Invalid destination unit.")
                     continue
 
-                num = input("Enter the number to convert: ")
+                num = float(input("Enter the number to convert: "))
 
                 match (start_unit):
                     case "1":
@@ -111,6 +117,24 @@ def main():
                     case "8":
                         start_unit_name = "Miles"
                         start_unit_value = 1609.344
+                    case "9":
+                        start_unit_name = "Micrometers"
+                        start_unit_value = 1e-6
+                    case "10":
+                        start_unit_name = "Nanometers"
+                        start_unit_value = 1e-9
+                    case "11":
+                        start_unit_name = "Picometers"
+                        start_unit_value = 1e-12
+                    case "12":
+                        start_unit_name = "Femtometers"
+                        start_unit_value = 1e-15
+                    case "13":
+                        start_unit_name = "Angstroms"
+                        start_unit_value = 1e-10
+                    case "14":
+                        start_unit_name = "Nautical Miles"
+                        start_unit_value = 1852.0
                     case _:
                         print("Invalid starting unit.")
                 
@@ -139,9 +163,38 @@ def main():
                     case "8":
                         end_unit_name = "Miles"
                         end_unit_value = 1609.344
+                    case "9":
+                        end_unit_name = "Micrometers"
+                        end_unit_value = 1e-6
+                    case "10":
+                        end_unit_name = "Nanometers"
+                        end_unit_value = 1e-9
+                    case "11":
+                        end_unit_name = "Picometers"
+                        end_unit_value = 1e-12
+                    case "12":
+                        end_unit_name = "Femtometers"
+                        end_unit_value = 1e-15
+                    case "13":
+                        end_unit_name = "Angstroms"
+                        end_unit_value = 1e-10
+                    case "14":
+                        end_unit_name = "Nautical Miles"
+                        end_unit_value = 1852.0
                     case _:
                         print("Invalid destination unit.")
-                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
+                #print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
+                result = num * start_unit_value / end_unit_value
+
+                if result != 0 and abs(result) < 0.0001:
+                    formatted_result = f"{result:.15g}"
+                else:
+                    formatted_result = f"{result:.4f}"
+
+                print(
+                    f"{num:g} {start_unit_name} is "
+                    f"{formatted_result} {end_unit_name}."
+                )
 
                 pass
 
