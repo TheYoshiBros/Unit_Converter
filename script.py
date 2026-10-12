@@ -1,5 +1,12 @@
 flag = True
 
+history = {
+    "Temperature": [],
+    "Distance": [],
+    "Weight": [],
+    "Volume": []
+}
+
 def main():
     global flag
     while flag:
@@ -8,8 +15,9 @@ def main():
   2. Convert Distance
   3. Convert Weight
   4. Convert Liquid-Volume
-  5. Exit""")
-        choice = input("\nSelect option (1-5): ")
+  5. View History
+  6. Exit""")
+        choice = input("\nSelect option (1-6): ")
 
         match choice:
             case "1":
@@ -23,38 +31,50 @@ def main():
 
                 num = input("Enter number to convert: ")
 
+                try:
+                    value = float(num)
+                except ValueError:
+                    print("Invalid number. Please try again.")
+                    continue
+
+                message = None
+
                 if from_unit == "1" and to_unit == "2":
-                    print(f'{num} degrees Celsius is {float(num) * 9/5 + 32:.4f} degrees Fahrenheit.')
+                    message = f'{num} degrees Celsius is {float(num) * 9/5 + 32:.4f} degrees Fahrenheit.'
 
                 elif from_unit == "1" and to_unit == "3":
-                    print(f'{num} degrees Celsius is {float(num) + 273.15:.4f} Kelvin.')
+                    message = f'{num} degrees Celsius is {float(num) + 273.15:.4f} Kelvin.'
 
                 elif from_unit == "2" and to_unit == "1":
-                    print(f'{num} degrees Fahrenheit is {(float(num) - 32) * 5/9:.4f} degrees Celsius.')
+                    message = f'{num} degrees Fahrenheit is {(float(num) - 32) * 5/9:.4f} degrees Celsius.'
 
                 elif from_unit == "2" and to_unit == "3":
                     celsius = (float(num) - 32) * 5/9
-                    print(f'{num} degrees Fahrenheit is {celsius + 273.15:.4f} Kelvin.')
+                    message = f'{num} degrees Fahrenheit is {celsius + 273.15:.4f} Kelvin.'
 
                 elif from_unit == "3" and to_unit == "1":
-                    print(f'{num} Kelvin is {float(num) - 273.15:.4f} degrees Celsius.')
+                    message = f'{num} Kelvin is {float(num) - 273.15:.4f} degrees Celsius.'
 
                 elif from_unit == "3" and to_unit == "2":
                     celsius = float(num) - 273.15
-                    print(f'{num} Kelvin is {celsius * 9/5 + 32:.4f} degrees Fahrenheit.')
+                    message = f'{num} Kelvin is {celsius * 9/5 + 32:.4f} degrees Fahrenheit.'
 
                 elif from_unit == to_unit:
                     if from_unit == "1":
-                        print(f'{num} degrees Celsius is {float(num):.4f} degrees Celsius.')
+                        message = f'{num} degrees Celsius is {float(num):.4f} degrees Celsius.'
                     elif from_unit == "2":
-                        print(f'{num} degrees Fahrenheit is {float(num):.4f} degrees Fahrenheit.')
+                        message = f'{num} degrees Fahrenheit is {float(num):.4f} degrees Fahrenheit.'
                     elif from_unit == "3":
-                        print(f'{num} Kelvin is {float(num):.4f} Kelvin.')
+                        message = f'{num} Kelvin is {float(num):.4f} Kelvin.'
                     else:
                         print("Invalid temperature unit.")
 
                 else:
                     print("Invalid temperature unit.")
+
+                if message is not None:
+                    print(message)
+                    history["Temperature"].append(message)
 
                 pass
 
@@ -77,11 +97,6 @@ def main():
                 start_unit = input("\nSelect starting unit (1-14): ")
                 end_unit = input("\nSelect destination unit (1-14): ")
 
-                #print("Starting unit selected:", start_unit)
-                #print("Destination unit selected:", end_unit)
-                
-                #print(f'{num} meters is {float(num) * 3.28084} feet.')
-
                 if start_unit not in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"):
                     print("Invalid starting unit.")
                     continue
@@ -90,7 +105,11 @@ def main():
                     print("Invalid destination unit.")
                     continue
 
-                num = float(input("Enter the number to convert: "))
+                try:
+                    num = float(input("Enter the number to convert: "))
+                except ValueError:
+                    print("Invalid number. Please try again.")
+                    continue
 
                 match (start_unit):
                     case "1":
@@ -183,7 +202,6 @@ def main():
                         end_unit_value = 1852.0
                     case _:
                         print("Invalid destination unit.")
-                #print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
                 result = num * start_unit_value / end_unit_value
 
                 if result != 0 and abs(result) < 0.0001:
@@ -191,25 +209,33 @@ def main():
                 else:
                     formatted_result = f"{result:.4f}"
 
-                print(
+                message = (
                     f"{num:g} {start_unit_name} is "
                     f"{formatted_result} {end_unit_name}."
                 )
+                print(message)
+                history["Distance"].append(message)
 
                 pass
 
             case "3":
-                print("""\n Wight and mass units:
+                print("""\n WEIGHT AND MASS UNITS:
     1. Grams
     2. Kilograms
     3. Milligrams
     4. Ounces
     5. Pounds""")
-                start_units = input("\nSelect Starting unit (1-5):")
+                start_unit = input("\nSelect Starting unit (1-5):")
                 end_unit = input("\nSelect destination unit (1-5)")
                 num = input("Enter the number to convert: ")
 
-                 match (start_unit):
+                try:
+                    value = float(num)
+                except ValueError:
+                    print("Invalid number. Please try again.")
+                    continue
+
+                match (start_unit):
                     case "1":
                         start_unit_name = "Grams"
                         start_unit_value = 1
@@ -259,7 +285,9 @@ def main():
                         print("Invalid destination unit.")
                         continue
                 
-                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
+                message = f'{num} {start_unit_name} is {value * start_unit_value / end_unit_value:.4f} {end_unit_name}.'
+                print(message)
+                history["Weight"].append(message)
                 pass
 
             case "4":
@@ -272,6 +300,12 @@ def main():
                 start_unit = input("\nSelect starting unit (1-5): ")
                 end_unit = input("\nSelect destination unit (1-5): ")
                 num = input("Enter the number to convert: ")
+
+                try:
+                    value = float(num)
+                except ValueError:
+                    print("Invalid number. Please try again.")
+                    continue
 
                 match (start_unit):
                     case "1":
@@ -291,6 +325,7 @@ def main():
                         start_unit_value = 3.78541
                     case _:
                         print("Invalid starting unit.")
+                        continue
 
                 match (end_unit):
                     case "1":
@@ -310,10 +345,59 @@ def main():
                         end_unit_value = 3.78541
                     case _:
                         print("Invalid destination unit.")
-                print(f'{num} {start_unit_name} is {float(num) * start_unit_value / end_unit_value:.4f} {end_unit_name}.')
+                        continue
+
+                message = f'{num} {start_unit_name} is {value * start_unit_value / end_unit_value:.4f} {end_unit_name}.'
+                print(message)
+                history["Volume"].append(message)
                 pass
 
             case "5":
+                while True:
+                    print("""\n CONVERSION HISTORY:
+  1. Temperature
+  2. Distance
+  3. Weight
+  4. Volume
+  5. All Calculations
+  6. Back to Main Menu""")
+
+                    history_choice = input("\nSelect option (1-6): ")
+
+                    categories = {
+                        "1": "Temperature",
+                        "2": "Distance",
+                        "3": "Weight",
+                        "4": "Volume"
+                    }
+
+                    if history_choice in categories:
+                        category = categories[history_choice]
+                        print(f"\n {category.upper()} HISTORY:")
+
+                        if history[category]:
+                            for index, calculation in enumerate(history[category], 1):
+                                print(f"  {index}. {calculation}")
+                        else:
+                            print("No calculations found.")
+
+                    elif history_choice == "5":
+                        print("\n ALL CALCULATIONS:")
+                        for category, calculations in history.items():
+                            print(f"\n {category} History:")
+                            if calculations:
+                                for index, calculation in enumerate(calculations, 1):
+                                    print(f"  {index}. {calculation}")
+                            else:
+                                print("  No calculations found.")
+
+                    elif history_choice == "6":
+                        break
+
+                    else:
+                        print("Invalid choice. Please try again.")
+
+            case "6":
                 print("Exiting...")
                 flag = False
                 break
