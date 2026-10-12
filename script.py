@@ -225,8 +225,8 @@ def main():
     3. Milligrams
     4. Ounces
     5. Pounds""")
-                start_unit = input("\nSelect Starting unit (1-5):")
-                end_unit = input("\nSelect destination unit (1-5)")
+                start_unit = input("\nSelect Starting unit (1-5): ")
+                end_unit = input("\nSelect destination unit (1-5): ")
                 num = input("Enter the number to convert: ")
 
                 try:
@@ -296,9 +296,13 @@ def main():
     2. Milliliters
     3. Cups
     4. Fluid Ounces
-    5. Gallons""")
-                start_unit = input("\nSelect starting unit (1-5): ")
-                end_unit = input("\nSelect destination unit (1-5): ")
+    5. Gallons
+    6. Teaspoons
+    7. Tablespoons
+    8. Pints
+    9. Quarts""")
+                start_unit = input("\nSelect starting unit (1-9): ")
+                end_unit = input("Select destination unit (1-9): ")
                 num = input("Enter the number to convert: ")
 
                 try:
@@ -323,6 +327,18 @@ def main():
                     case "5":
                         start_unit_name = "Gallons"
                         start_unit_value = 3.78541
+                    case "6":
+                        start_unit_name = "Teaspoons"
+                        start_unit_value = 0.00492892
+                    case "7":
+                        start_unit_name = "Tablespoons"
+                        start_unit_value = 0.0147868
+                    case "8":
+                        start_unit_name = "Pints"
+                        start_unit_value = 0.473176
+                    case "9":
+                        start_unit_name = "Quarts"
+                        start_unit_value = 0.946353
                     case _:
                         print("Invalid starting unit.")
                         continue
@@ -343,6 +359,18 @@ def main():
                     case "5":
                         end_unit_name = "Gallons"
                         end_unit_value = 3.78541
+                    case "6":
+                        end_unit_name = "Teaspoons"
+                        end_unit_value = 0.00492892
+                    case "7":
+                        end_unit_name = "Tablespoons"
+                        end_unit_value = 0.0147868
+                    case "8":
+                        end_unit_name = "Pints"
+                        end_unit_value = 0.473176
+                    case "9":
+                        end_unit_name = "Quarts"
+                        end_unit_value = 0.946353
                     case _:
                         print("Invalid destination unit.")
                         continue
