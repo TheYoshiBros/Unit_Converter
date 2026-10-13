@@ -224,7 +224,11 @@ def main():
     2. Kilograms
     3. Milligrams
     4. Ounces
-    5. Pounds""")
+    5. Pounds
+    6. Micrograms
+    7. Metric Tons
+    8. Stones
+    9. US Tons""")
                 start_unit = input("\nSelect Starting unit (1-5): ")
                 end_unit = input("\nSelect destination unit (1-5): ")
                 num = input("Enter the number to convert: ")
@@ -255,6 +259,18 @@ def main():
                     case "5":
                         start_unit_name = "Pounds"
                         start_unit_value = 453.59237
+                    case "6":
+                        start_unit_name = "Micrograms"
+                        start_unit_value = 0.000001
+                     case "7":
+                        start_unit_name = "Metric Tons"
+                        start_unit_name = 1000000
+                    case "8":
+                        start_unit_name = "Stones"
+                        start_unit_value = 6350.29318
+                    case "9":
+                        start_unit_name = "US Tons"
+                        start_unit_value = 907184.74
 
                     case _:
                         print("Invalid starting unit.")
@@ -280,6 +296,18 @@ def main():
                     case "5":
                         end_unit_name = "Pounds"
                         end_unit_value = 453.59237
+                    case "6":
+                        end_unit_name = "Micrograms"
+                        end_unit_value = 0.000001
+                    case "7":
+                        end_unit_name = "Metric Tons"
+                        end_unit_value = 1000000
+                    case "8":
+                        end_unit_name = "Stones"
+                        end_unit_value = 6350.29318
+                    case "9":
+                        end_unit_name = "US Tons"
+                        end_unit_value = 907184.74
 
                     case _:
                         print("Invalid destination unit.")
