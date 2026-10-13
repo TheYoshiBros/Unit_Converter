@@ -229,8 +229,8 @@ def main():
     7. Metric Tons
     8. Stones
     9. US Tons""")
-                start_unit = input("\nSelect Starting unit (1-5): ")
-                end_unit = input("\nSelect destination unit (1-5): ")
+                start_unit = input("\nSelect Starting unit (1-9): ")
+                end_unit = input("\nSelect destination unit (1-9): ")
                 num = input("Enter the number to convert: ")
 
                 try:
@@ -242,35 +242,35 @@ def main():
                 match (start_unit):
                     case "1":
                         start_unit_name = "Grams"
-                        start_unit_value = 1
+                        start_unit = 1
 
                     case "2":
                         start_unit_name = "Kilograms"
-                        start_unit_value = 1000
+                        start_unit = 1000
 
                     case "3":
                         start_unit_name = "Milligrams"
-                        start_unit_value = 0.001
+                        start_unit = 0.001
 
                     case "4":
                         start_unit_name = "Ounces"
-                        start_unit_value = 28.349523125
+                        start_unit = 28.349523125
 
                     case "5":
                         start_unit_name = "Pounds"
-                        start_unit_value = 453.59237
+                        start_unit = 453.59237
                     case "6":
                         start_unit_name = "Micrograms"
-                        start_unit_value = 0.000001
-                     case "7":
+                        start_unit = 0.000001
+                    case "7":
                         start_unit_name = "Metric Tons"
-                        start_unit_name = 1000000
+                        start_unit = 1000000
                     case "8":
                         start_unit_name = "Stones"
-                        start_unit_value = 6350.29318
+                        start_unit = 6350.29318
                     case "9":
                         start_unit_name = "US Tons"
-                        start_unit_value = 907184.74
+                        start_unit = 907184.74
 
                     case _:
                         print("Invalid starting unit.")
@@ -313,7 +313,7 @@ def main():
                         print("Invalid destination unit.")
                         continue
                 
-                message = f'{num} {start_unit_name} is {value * start_unit_value / end_unit_value:.4f} {end_unit_name}.'
+                message = f'{num} {start_unit_name} is {value * start_unit / end_unit_value:.4f} {end_unit_name}.'
                 print(message)
                 history["Weight"].append(message)
                 pass
